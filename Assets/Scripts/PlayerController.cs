@@ -13,7 +13,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
 
     public float Speed = 3f;
-    
+
+    public GameObject WeaponPrefab;
+    private GameObject WeaponObj;
+    private Weapon Weapon;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -21,6 +25,9 @@ public class PlayerController : MonoBehaviour
         _isGrounded = false;
 
         Health = MaxHealth;
+
+        WeaponObj = Instantiate(WeaponPrefab, transform.Find("Hand"));
+        Weapon = WeaponObj.GetComponent<Weapon>();
     }
 
     // Update is called once per frame
@@ -30,8 +37,21 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W)) _rb.position += Vector3.forward * Speed * Time.deltaTime;
         if (Input.GetKey(KeyCode.S)) _rb.position += Vector3.back * Speed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.A)) _rb.position += Vector3.left * Speed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.D)) _rb.position += Vector3.right * Speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.A))
+        {
+            _rb.position += Vector3.left * Speed * Time.deltaTime;
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            _rb.position += Vector3.right * Speed * Time.deltaTime;
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
         if (Input.GetKey(KeyCode.Space) && _isGrounded)
         {
             _rb.velocity = Vector3.up * JumpForce;
@@ -78,6 +98,6 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-
+        Weapon.Attack();
     }
 }

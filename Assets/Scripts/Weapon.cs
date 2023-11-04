@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Weapon", menuName = "ScriptableObjects/WeaponObject", order = 1)]
-public class Weapon : ScriptableObject
+public class Weapon : MonoBehaviour
 {
     public enum WeaponTypes
     {
@@ -12,30 +11,36 @@ public class Weapon : ScriptableObject
         Magic
     }
 
-    public Sprite WeaponSprite;
-
     public WeaponTypes WeaponType;
 
     public float Damage;
     public float AttackSpeed;
 
-    private Animation _animator;
-    public AnimationClip AttackAnimation;
+    private Animator Anim;
 
-    public void Attack()
-    {
-        _animator.Play(AttackAnimation.name);
-    }
+    private float TimeSinceLastAttack;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Anim = GetComponent<Animator>();
+        TimeSinceLastAttack = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void Attack()
+    {
+        float time = Time.time;
+        Debug.Log(time - TimeSinceLastAttack);
+        if (time - TimeSinceLastAttack >= AttackSpeed)
+        {
+            TimeSinceLastAttack = time;
+            Anim.Play("Sword_Swing");
+        }
     }
 }

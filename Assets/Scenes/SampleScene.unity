@@ -424,6 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
+  WeaponPrefab: {fileID: 4624694825601310776, guid: 78aa7e2944d8b2d4bad17e7e9fbd6c20, type: 3}
 --- !u!1 &757811884
 GameObject:
   m_ObjectHideFlags: 0
