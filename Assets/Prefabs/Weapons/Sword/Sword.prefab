@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponType: 0
   Damage: 5
-  AttackSpeed: 1
+  AttackSpeed: 0.5
 --- !u!95 &4606950058833475296
 Animator:
   serializedVersion: 5
