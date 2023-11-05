@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject musicController;
+
+
     private int Credits;
 
     public GameObject Player;
@@ -159,6 +162,7 @@ public class GameManager : MonoBehaviour
         SpawnObjects();
 
         anim.Play("LevelStart");
+        musicController.GetComponent<MusicController>().Switch();
         changingLevel = false;
     }
 }

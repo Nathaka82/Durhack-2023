@@ -16,6 +16,12 @@ public class MusicController : MonoBehaviour
         musicSource.Play();
     }
 
+    public void Switch()
+    {
+        musicSource.clip = Soundtracks[Random.Range(0, Soundtracks.Length)];
+        musicSource.Play();
+    }
+
     // Update is called once per frame
     void Update()
     {
