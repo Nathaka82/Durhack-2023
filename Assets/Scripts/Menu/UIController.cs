@@ -18,6 +18,6 @@ public class UIController : MonoBehaviour
 
     public void LoadCredits()
     {
-        SceneManager.LoadScene(2);
+        ST.LoadLevel(2);
     }
 }
